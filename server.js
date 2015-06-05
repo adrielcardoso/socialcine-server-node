@@ -191,7 +191,7 @@ setInterval(function () {
         loadXMLDoc(channels[single].sigla);
     }
 
-}, 60000);
+}, 600000);
 
 io.on('connection', function (socket) {
 
@@ -1257,24 +1257,22 @@ function loadXMLDoc(type) {
     var params = "action=" + (type == 'all' ? 'all' : 'single') + (type == 'all' ? '' : '&canal=' + type);
 
     var data;
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var client = new XMLHttpRequest();
     
-    try{
-
-        client.open('GET', "http://socialcine-server-api.herokuapp.com/?" + params);
+     client.open('GET', "http://socialcine-server-api.herokuapp.com/?" + params);
         client.responseType = 'json';
-        client.addEventListener('load', function () {
+        client.timeout = 43200000;
+        client.ontimeout = function () {
+            console.log('TIME');
+        }
+        client.addEventListener('load', function (ev) {
 
-            console.log(params);
-
-            setObjt(client.response, type);
+            setObjt((ev ? client.response : false), type);
 
         }, false);
 
         client.send();
-    }catch(e){
-        setObjt(false, type);
-    };
 }
 
 
