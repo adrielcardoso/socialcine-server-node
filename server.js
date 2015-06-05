@@ -1260,7 +1260,7 @@ function loadXMLDoc(type) {
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var client = new XMLHttpRequest();
     
-     client.open('GET', "http://socialcine-server-api.herokuapp.com/?" + params);
+     client.open('GET', "https://socialcine-server-api.herokuapp.com/?" + params);
         client.responseType = 'json';
         client.timeout = 43200000;
         client.ontimeout = function () {
