@@ -1256,23 +1256,16 @@ function loadXMLDoc(type) {
 
     var params = "action=" + (type == 'all' ? 'all' : 'single') + (type == 'all' ? '' : '&canal=' + type);
 
-    var data;
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    var client = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+          setObjt((xhr.responseText ? xhr.responseText : false), type);
+      }
+    };
+    xhr.open("GET", "https://socialcine-server-api.herokuapp.com/?" + params, true);
+    xhr.send();
     
-     client.open('GET', "https://socialcine-server-api.herokuapp.com/?" + params);
-        client.responseType = 'json';
-        client.timeout = 43200000;
-        client.ontimeout = function () {
-            console.log('TIME');
-        }
-        client.addEventListener('load', function (ev) {
-
-            setObjt((ev ? client.response : false), type);
-
-        }, false);
-
-        client.send();
 }
 
 
