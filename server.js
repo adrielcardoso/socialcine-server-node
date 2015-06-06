@@ -1227,7 +1227,7 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('users_online_emit', function(users_online){
+    socket.on('users_online_emit', function(ev){
         socket.emit('users_online', users_online);
     });
 
@@ -1237,8 +1237,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function() {
-        var update_user = users_online--;
-        users_online (update_user < 0 ? 0 : update_user);
+        users_online--;
     });
 });
 
