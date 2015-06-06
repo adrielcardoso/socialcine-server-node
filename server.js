@@ -1235,7 +1235,7 @@ io.on('connection', function (socket) {
 
 
     socket.on('users_online', function(users_online){
-        socket.emit('users_online', socket.id);
+        socket.emit('users_online', users_online);
     });
 
 
