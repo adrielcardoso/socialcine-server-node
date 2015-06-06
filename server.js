@@ -1224,13 +1224,10 @@ io.on('connection', function (socket) {
                 });
             }
 
-        } else {
-            socket.emit('rota_' + obj['user'], 'nada encontrado');
         }
     });
 
-
-    socket.on('users_online', function(users_online){
+    socket.on('users_online_emit', function(users_online){
         socket.emit('users_online', users_online);
     });
 
