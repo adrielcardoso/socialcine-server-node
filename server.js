@@ -193,7 +193,14 @@ setInterval(function () {
 
 }, 600000);
 
+var users_online = 0;
 io.on('connection', function (socket) {
+
+    users_online++;
+
+    socket.on('disconnect', function() {
+        users_online--;
+    });
 
     socket.on("rota", function (obj) {
 
@@ -1224,6 +1231,11 @@ io.on('connection', function (socket) {
         } else {
             socket.emit('rota_' + obj['user'], 'nada encontrado');
         }
+    });
+
+
+    socket.on('users_online', function(users_online){
+        socket.emit('users_online', socket.id);
     });
 
 
