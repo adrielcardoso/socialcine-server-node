@@ -1237,7 +1237,8 @@ io.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function() {
-        users_online--;
+        var update_user = users_online--;
+        users_online (update_user < 0 ? 0 : update_user);
     });
 });
 
