@@ -198,10 +198,6 @@ io.on('connection', function (socket) {
 
     users_online++;
 
-    socket.on('disconnect', function() {
-        users_online--;
-    });
-
     socket.on("rota", function (obj) {
 
         if (obj['rota'] == 'default') {
@@ -1238,10 +1234,13 @@ io.on('connection', function (socket) {
         socket.emit('users_online', users_online);
     });
 
-
     // get quem sou 
     socket.on('quem_sou', function (quem_sou) {
         socket.emit('eu_sou', socket.id);
+    });
+
+    socket.on('disconnect', function() {
+        users_online--;
     });
 });
 
