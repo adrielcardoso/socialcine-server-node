@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-
+ 
 var all;
 var cfx;
 var hfa;
