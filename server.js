@@ -24,7 +24,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-
 var all;
 var cfx;
 var hfa;
