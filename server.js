@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var XMLHttpRequest = require('w3c-xmlhttprequest').XMLHttpRequest;
 var channels = require('./channel.json');
-
+ 
 // Add headers
 app.use(function (req, res, next) {
 
